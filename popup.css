@@ -1,0 +1,277 @@
+﻿/* popup.css */
+
+
+/* --- CORE COLORS & GRADIENTS --- */
+:root {
+  --bg-dark-start: #00100a; /* Very deep dark green/black */
+  --bg-dark-end: #032014;   /* Slightly lighter deep green */
+  --module-bg: #0d1a13;     /* Dark panel background */
+  --text-primary: #e0e0e0;
+  --text-secondary: #999999;
+  
+  /* NEON GREEN & WARNING ACCENTS */
+  --accent-neon: #33ff99;   /* High visibility accent */
+  --accent-ready: #33ff99;  /* Ready/Enabled state */
+  --accent-locked: #f39c12; /* Warning orange for locked state */
+  --accent-active: #ff4d4d; /* Stop/Active state */
+  --border-color: rgba(51, 255, 153, 0.15); /* Soft neon border */
+}
+
+
+/* --- OVERALL LAYOUT --- */
+body {
+  width: 320px; /* Slightly wider for the new UI modules */
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--bg-dark-start) 0%, var(--bg-dark-end) 100%);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+
+.extension-container {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Spacing between modules */
+}
+
+
+/* --- HEADER / LOGO SECTION --- */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+
+.logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+
+h1 {
+  font-size: 18px;
+  color: var(--accent-neon);
+  margin: 0;
+  font-weight: 700;
+}
+
+
+/* --- THE MODULE PANELS --- */
+.module {
+  background-color: var(--module-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px; /* Rounded corners like ref image */
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.module h2 {
+  font-size: 14px;
+  color: var(--accent-neon);
+  margin-top: 0;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+
+/* --- STATUS & TIMER MODULE --- */
+.main-module {
+  text-align: center;
+}
+
+
+#status-indicator {
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+
+/* STATUS COLORS (managed in JS) */
+.status-ready { 
+  background-color: rgba(51, 255, 153, 0.1); 
+  color: var(--accent-ready); 
+}
+
+
+.status-active { 
+  background-color: rgba(243, 156, 18, 0.15); /* Warning orange glow */
+  color: var(--accent-locked); 
+}
+
+
+#timer {
+  font-size: 48px; /* Large timer display */
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 10px 0 15px 0;
+  font-feature-settings: "tnum"; /* Tabular numbers for consistent spacing */
+}
+
+
+/* --- BUTTON STYLING (Green Action Button) --- */
+button {
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 6px rgba(46, 204, 113, 0.3);
+}
+
+
+button:hover {
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.5);
+}
+
+
+button:active {
+  transform: translateY(1px);
+}
+
+
+/* STOP STATE COLOR */
+button.active {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  box-shadow: 0 2px 6px rgba(231, 76, 60, 0.3);
+}
+
+
+button.active:hover {
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.5);
+}
+
+
+/* --- BLOCKLIST MODULE & INPUTS --- */
+.blocklist-module {
+  margin-top: 5px;
+}
+
+
+.input-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+
+input {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.05); /* Very light dark input background */
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+
+input:focus {
+  outline: none;
+  border-color: var(--accent-neon);
+}
+
+
+.icon-btn {
+  width: auto;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+
+/* THE SCROLLING LIST */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 120px; /* Constraints list height */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+
+/* List scrollbar styling */
+ul::-webkit-scrollbar {
+  width: 6px;
+}
+ul::-webkit-scrollbar-track {
+  background: transparent;
+}
+ul::-webkit-scrollbar-thumb {
+  background: rgba(51, 255, 153, 0.2);
+  border-radius: 3px;
+}
+
+
+/* INDIVIDUAL LIST ITEMS */
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03); /* Faint list item bg */
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+}
+
+
+li:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(51, 255, 153, 0.05);
+  color: var(--text-primary);
+}
+
+
+.delete-item {
+  color: var(--accent-active);
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 14px;
+  padding: 2px 6px;
+}
+
+/* Custom Time Selection Layout Styles */
+.duration-setter {
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px !important;
+}
+
+.duration-setter input {
+  max-width: 60px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 6px;
+}
+
+.duration-setter span {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--accent-neon);
+}

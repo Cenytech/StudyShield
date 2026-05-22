@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="extension-container">
+    
+    <div class="header">
+      <img src="icon48.png" alt="StudyShield Logo" class="logo">
+      <h1>StudyShield Focus</h1>
+    </div>
+
+    <div class="module main-module">
+      <div id="status-indicator" class="status-ready">Ready to Focus</div>
+      
+      <div id="time-input-group" class="input-group duration-setter">
+        <input type="number" id="input-minutes" min="0" max="180" value="25" placeholder="Min">
+        <span>:</span>
+        <input type="number" id="input-seconds" min="0" max="59" value="00" placeholder="Sec">
+      </div>
+
+      <div id="timer">25:00</div>
+      <button id="toggle-btn">Start Session</button>
+    </div>
+
+    <div class="module blocklist-module">
+      <h2>Distraction Blocklist</h2>
+      <div class="input-group">
+        <input type="text" id="site-input" placeholder="example.com">
+        <button id="add-btn" class="icon-btn">+</button>
+      </div>
+      <ul id="blocklist-ui"></ul>
+    </div>
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
